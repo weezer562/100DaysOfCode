@@ -1,0 +1,155 @@
+import random
+
+hangmanTitle = ''' 
+ _                                             
+| |                                            
+| |__   __ _ _ __   __ _ _ __ ___   __ _ _ __  
+| '_ \ / _` | '_ \ / _` | '_ ` _ \ / _` | '_ \ 
+| | | | (_| | | | | (_| | | | | | | (_| | | | |
+|_| |_|\__,_|_| |_|\__, |_| |_| |_|\__,_|_| |_|
+                    __/ |                      
+                   |___/     '''
+
+print(hangmanTitle)
+
+hangmanImages = [
+    '''
+    +---+
+        |
+        |
+        |
+       ===''',
+    '''
+    +---+
+    O   |
+        |
+        |
+       ===''',
+    '''
+    +---+
+    O   |
+    |   |
+        |
+       ===''',
+    '''
+    +---+
+    O   |
+   /|   |
+        |
+       ===''',
+    '''
+    +---+
+    O   |
+   /|\  |
+        |
+       ===''',
+    '''
+    +---+
+    O   |
+   /|\  |
+   /    |
+       ===''',
+    '''
+    +---+
+    O   |
+   /|\  |
+   / \  |
+       ==='''
+]
+ 
+ #Initial Menu
+print("Welcome to the PyHangman Game!")
+print("I'm thinking of a word. Can you guess it?")
+print("You have 6 lives.")
+
+words = ["monkey", "roleplay", "twitch", "chrome"]
+
+guesses = 6
+
+# Print current word status ex. _ _ e _ _ l _
+def printCurrentWordStatus(guess):
+    for i in range(0, len(word)):
+        if word[i] == guess:
+            wordDashes[i] = guess
+            print(wordDashes[i], end=" ")
+        else:
+            if wordDashes[i] != "_":
+                print(wordDashes[i], end=" ")
+            else:
+                print("_", end=" ")
+    print("\n")
+
+def checkWinCondition(guess):
+    if guess == word:
+        print("You win!")
+        global guesses 
+        guesses = 6
+        return True
+    else:
+        print("Not the correct word, you lose a turn")
+        guesses -= 1
+        printStatus()
+        return False
+   
+def isWordComplete(word):
+    if "_" not in wordDashes:
+        print(f"You win!, you have revealed the word: {word}")
+        global guesses 
+        guesses = 6
+        return True
+    return False
+
+def checkLetter(guess):
+    if guess in word:
+        if isWordComplete(word):
+            return True
+        print("Good guess!")
+        wordDashes[word.index(guess)] = guess
+        printStatus()
+    else:
+        print("Wrong guess. You lose a life.")
+        global guesses 
+        guesses -= 1
+        printStatus()
+
+def printStatus():
+    global guesses 
+    print(hangmanImages[6 - guesses])
+    print(f"You have {guesses} lives left.")
+    printCurrentWordStatus("")
+
+def promptPlayAgain():
+    return input("Do you want to play again? (yes/no)")
+    
+continueGame = True
+
+while continueGame:
+    # Select a random word
+    word = random.choice(words)
+    # Create a list of dashes to represent the word
+    wordDashes = ["_"] * len(word)
+    # Reset the number of guesses
+
+    printStatus()
+    hasWon = False
+
+    while guesses > 0 and not hasWon:
+        guess = input("Make a Guess! ")
+
+        if len(guess) > 1:
+            if checkWinCondition(guess):
+                hasWon = True
+                continueGame = False
+                if promptPlayAgain() == "yes":
+                    continueGame = True
+                break
+        else:
+            if checkLetter(guess):
+                hasWon = True
+                continueGame = False
+                if promptPlayAgain() == "yes":
+                    continueGame = True
+                break
+
+
+
