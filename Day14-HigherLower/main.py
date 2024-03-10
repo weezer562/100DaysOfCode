@@ -2,17 +2,21 @@ import random
 import art
 import game_data
 
+
 def get_person():
     return random.choice(game_data.data)
 
+
 def print_person(person):
     print(f"Compare A: {person["name"]}, a {person["description"]}, from {person["country"]}")
-    
+
+
 def check_guess(choice, first, second):
     if first["follower_count"] > second["follower_count"]:
         return choice == "a"
     else:
         return choice == "b"
+
 
 def higher_lower_game():
     next = True
