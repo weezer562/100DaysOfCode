@@ -16,6 +16,7 @@ class CarManager(Turtle):
 
         self.all_cars = []
         self.car_speed = STARTING_MOVE_DISTANCE
+        self.hideturtle()
 
     def create_car(self):
         random_chance = random.randint(1,6)
