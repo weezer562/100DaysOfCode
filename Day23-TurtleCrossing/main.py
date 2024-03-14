@@ -1,0 +1,44 @@
+from turtle import Screen
+from car_manager import CarManager
+import time
+from player import Player
+from scoreboard import Scoreboard
+
+MOVE_DISTANCE = 15
+
+screen = Screen()
+screen.setup(width=600, height=600)
+screen.title("Turtle Crossing")
+screen.tracer(0)
+
+player = Player()
+car_manager = CarManager()
+scoreboard = Scoreboard()
+
+screen.listen()
+screen.onkey(key="w", fun=player.move_up)
+screen.onkey(key="a", fun=player.move_left)
+screen.onkey(key="d", fun=player.move_right)
+
+game_is_on = True
+
+while game_is_on:
+    time.sleep(0.1)
+    screen.update()
+
+    car_manager.create_car()
+    car_manager.move_cars()
+
+    # Detect collision with car
+    for car in car_manager.all_cars:
+        if car.distance(player) < 20:
+            game_is_on = False
+            scoreboard.game_over()
+
+    # Detect successfully crossing
+    if player.is_at_finish_line():
+        player.go_to_start()
+        car_manager.level_up()
+        scoreboard.increase_level()
+
+screen.exitonclick()
