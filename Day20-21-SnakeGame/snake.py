@@ -21,6 +21,13 @@ class Snake:
         for _ in range(0, 3):
             self.add_segment(x_coord, y_coord)
 
+    def reset(self):
+        for seg in self.snake:
+            seg.goto(1000, 1000)
+        self.snake.clear()
+        self.make_snake()
+        self.head = self.snake[0]
+
     def move(self):
         """Move Snake segments as one"""
         for snake_num in range(len(self.snake) - 1, 0, -1):
@@ -31,20 +38,18 @@ class Snake:
 
         self.head.forward(MOVE_DISTANCE)
 
-    def border_check(self, x_coord, y_coord):
+    def border_check(self, x_coord, y_coord, scoreboard):
         """Check if snake reached a screen edge"""
         x = x_coord / 2 - 20
         y = y_coord / 2
 
-        scoreboard = Scoreboard()
         if self.head.xcor() > x or self.head.xcor() <= -y:
-            scoreboard.game_over()
-            return False
+            scoreboard.reset()
+            self.reset()
 
         if self.head.ycor() > x or self.head.ycor() < -y:
-            scoreboard.game_over()
-            return False
-        return True
+            scoreboard.reset()
+            self.reset()
 
     def add_segment(self, x_coord, y_coord):
         """Add segment to Snake"""

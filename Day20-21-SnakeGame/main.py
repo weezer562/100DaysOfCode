@@ -3,6 +3,7 @@ from turtle import Screen
 from snake import Snake
 from food import Food
 from scoreboard import Scoreboard
+from iomanager import IOManager
 
 SCREEN_WIDTH = 600
 SCREEN_LENGTH = 600
@@ -14,9 +15,11 @@ screen.bgcolor("black")
 screen.title("Snake Game")
 screen.tracer(0)
 
+io_manager = IOManager()
 snake = Snake()
 food = Food()
-scoreboard = Scoreboard()
+scoreboard = Scoreboard(io_manager)
+
 
 # Control Setup
 screen.listen()
@@ -30,22 +33,22 @@ game_is_on = True
 while game_is_on:
     screen.update()
     time.sleep(0.1)
-    
+
     snake.move()
-    
+
     # Detect Collision with food
     if snake.head.distance(food) < 15:
         food.refresh()
         scoreboard.update_score()
         snake.grow()
-        
+
     # Border detection collision
-    game_is_on = snake.border_check(SCREEN_WIDTH, SCREEN_LENGTH)
-    
+    snake.border_check(SCREEN_WIDTH, SCREEN_LENGTH, scoreboard)
+
     # Detect collision with self tail
     for segment in snake.snake[1:]:
         if snake.head.distance(segment) < 10:
-            game_is_on = False
-            scoreboard.game_over()
-            
+            scoreboard.reset()
+            snake.reset()
+
 screen.exitonclick()
