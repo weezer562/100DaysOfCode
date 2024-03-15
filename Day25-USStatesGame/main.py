@@ -44,11 +44,7 @@ while continue_guessing:
         answer_state = answer_state.title()
 
     if answer_state == "Exit" or answer_state is None:
-        missing_states = []
-        for state in list_state_data:
-            if state not in correct_guesses:
-                missing_states.append(state)
-
+        missing_states = [state for state in list_state_data if state not in correct_guesses]
         write_data(missing_states)
         continue_guessing = False
         break
