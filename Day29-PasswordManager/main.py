@@ -1,6 +1,5 @@
 from tkinter import *
 from tkinter import messagebox
-import pandas as pd
 from random import choice, randint, shuffle
 import pyperclip
 import json
