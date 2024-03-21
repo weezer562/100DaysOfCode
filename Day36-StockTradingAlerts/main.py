@@ -69,9 +69,7 @@ def get_news(dec_change):
     for index in range(3):
         message += (f"{STOCK}: {status}{dec_change*100}%\n{json_response["articles"][index]["title"]}\n"
                     f"Brief: {json_response["articles"][index]["description"]}")
-        message += "\n"
-
-    send_sms(message)
+        send_sms(message)
 
 
 def send_sms(message):
