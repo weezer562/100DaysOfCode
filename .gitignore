@@ -1,6 +1,11 @@
 __pycache__
 
+# Pycharm
 .idea
 .idea/*
 
+# Credentials
 *.env
+
+# Environments
+/.run/
