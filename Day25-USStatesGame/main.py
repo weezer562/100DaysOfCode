@@ -1,5 +1,5 @@
-import os
 import turtle
+
 import pandas as pd
 
 screen = turtle.Screen()

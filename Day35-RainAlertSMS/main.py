@@ -2,8 +2,8 @@ import json
 import os
 
 import requests
-from twilio.rest import Client
 from dotenv import load_dotenv
+from twilio.rest import Client
 
 MY_LAT = 33.7701
 MY_LONG = 118.1937

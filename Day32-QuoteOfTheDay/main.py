@@ -1,7 +1,8 @@
-import smtplib
 import datetime as dt
-import random
 import os
+import random
+import smtplib
+
 from dotenv import load_dotenv
 
 load_dotenv('../creds.env')

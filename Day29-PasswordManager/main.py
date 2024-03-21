@@ -1,8 +1,9 @@
+import json
+from random import choice, randint, shuffle
 from tkinter import *
 from tkinter import messagebox
-from random import choice, randint, shuffle
+
 import pyperclip
-import json
 
 PINK = "#e2979c"
 RED = "#e7305b"

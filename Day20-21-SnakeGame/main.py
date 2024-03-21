@@ -1,9 +1,10 @@
 import time
 from turtle import Screen
-from snake import Snake
+
 from food import Food
-from scoreboard import Scoreboard
 from iomanager import IOManager
+from scoreboard import Scoreboard
+from snake import Snake
 
 SCREEN_WIDTH = 600
 SCREEN_LENGTH = 600

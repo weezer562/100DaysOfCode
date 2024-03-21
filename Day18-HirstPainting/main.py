@@ -1,6 +1,8 @@
 import random
-import colorgram
 import turtle as t
+
+import colorgram
+
 
 def get_colors():
     colors = colorgram.extract('colors.jpg', 20)

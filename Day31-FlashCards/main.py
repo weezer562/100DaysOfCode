@@ -1,6 +1,7 @@
-from tkinter import *
-import pandas
 import random
+from tkinter import *
+
+import pandas
 
 BACKGROUND_COLOR = "#B1DDC6"
 

@@ -3,8 +3,9 @@ import random
 import smtplib
 import time
 from datetime import datetime
-from dotenv import load_dotenv
+
 import pandas
+from dotenv import load_dotenv
 
 TIME_INTERVAL = 60 * 60 * 24
 
