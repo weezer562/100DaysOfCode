@@ -41,7 +41,7 @@ def check_stock_diff():
     today_close = days_data[today_formatted]["4. close"]
     yesterday_close = days_data[yesterday_formatted]["4. close"]
 
-    diff = 1 - abs(today_close / yesterday_close)
+    diff = 1 - abs(float(today_close) / float(yesterday_close))
     if today_close > yesterday_close:
         status = "🔺"
     else:
