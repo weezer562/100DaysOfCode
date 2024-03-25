@@ -32,7 +32,7 @@ for song, artist in song_artist_list:
         print(f"{song} by {artist} doesn't exist in Spotify. Skipped.")
 
 # Create Playlist if it does not exist
-playlist = sp.user_playlist_create(user_id, "Billboard 100", public=False)
+playlist = sp.user_playlist_create(user_id, f"Billboard 100 - {year}", public=False)
 
 # Adding Tracks to playlist, 20 at a time
 for index in range(0, len(spotify_song_list), 20):
