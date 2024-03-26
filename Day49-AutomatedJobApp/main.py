@@ -23,7 +23,7 @@ def abort_application():
     discard_button.click()
 
 
-chrome_driver_path = "driver/chromedriver.exe"
+chrome_driver_path = "../chromedriver/chromedriver.exe"
 
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_experimental_option("detach", True)
