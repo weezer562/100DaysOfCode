@@ -50,7 +50,7 @@ driver = webdriver.Chrome(options=chrome_options)
 
 for n in range(len(all_links)):
     form_link = os.getenv("GOOGLE_FORM_LINK")
-    driver.get("YOUR_GOOGLE_FORM_LINK_HERE")
+    driver.get(form_link)
     time.sleep(2)
 
     # Use the xpath to select the "short answer" fields in your Google Form.
